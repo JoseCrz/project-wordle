@@ -1,25 +1,25 @@
 import React from "react";
+import { checkGuess } from "../../../game-helpers";
+import { range } from "../../../utils";
 
-export function GuessRow({ value }) {
+export function GuessRow({ value, answer }) {
   if (!value) {
     return (
       <p className="guess">
-        <span className="cell"></span>
-        <span className="cell"></span>
-        <span className="cell"></span>
-        <span className="cell"></span>
-        <span className="cell"></span>
+        {range(5).map((index) => (
+          <span key={index} className="cell"></span>
+        ))}
       </p>
     );
   }
 
-  const letters = value.split("");
+  const letters = checkGuess(value, answer);
 
   return (
     <p className="guess">
       {letters.map((letter, index) => (
-        <span key={letter + index} className="cell">
-          {letter}
+        <span key={index} className={`cell ${letter.status}`}>
+          {letter.value}
         </span>
       ))}
     </p>

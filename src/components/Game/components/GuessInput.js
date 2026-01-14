@@ -7,6 +7,11 @@ export function GuessInput({ onSubmitGuess }) {
       className="guess-input-wrapper"
       onSubmit={(event) => {
         event.preventDefault();
+
+        if (inputValue.length < 5) {
+          return window.alert("Word must have 5 letters");
+        }
+
         onSubmitGuess(inputValue);
         setInputValue("");
       }}

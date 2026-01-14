@@ -18,7 +18,7 @@ function Game() {
     <main>
       <div className="guess-results">
         {range(NUM_OF_GUESSES_ALLOWED).map((index) => (
-          <GuessRow key={index} value={guesses[index]?.value} />
+          <GuessRow key={index} value={guesses[index]?.value} answer={answer} />
         ))}
       </div>
       <GuessInput
