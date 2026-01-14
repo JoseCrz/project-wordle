@@ -1,9 +1,9 @@
 import React from "react";
-import { checkGuess } from "../../../game-helpers";
+
 import { range } from "../../../utils";
 
-export function GuessRow({ value, answer }) {
-  if (!value) {
+export function GuessRow({ letters }) {
+  if (!letters) {
     return (
       <p className="guess">
         {range(5).map((index) => (
@@ -12,8 +12,6 @@ export function GuessRow({ value, answer }) {
       </p>
     );
   }
-
-  const letters = checkGuess(value, answer);
 
   return (
     <p className="guess">
