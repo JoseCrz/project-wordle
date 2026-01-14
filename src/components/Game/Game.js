@@ -1,10 +1,11 @@
 import React from "react";
 
-import { sample } from "../../utils";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
+import { sample, range } from "../../utils";
 import { WORDS } from "../../data";
 
 import { GuessInput } from "./components/GuessInput";
-import { PreviousGuesses } from "./components/PreviousGuesses";
+import { GuessRow } from "./components/GuessRow";
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -15,7 +16,11 @@ function Game() {
   const [guesses, setGuesses] = React.useState([]);
   return (
     <main>
-      <PreviousGuesses guesses={guesses} />
+      <div className="guess-results">
+        {range(NUM_OF_GUESSES_ALLOWED).map((index) => (
+          <GuessRow key={index} value={guesses[index]?.value} />
+        ))}
+      </div>
       <GuessInput
         onSubmitGuess={(value) => {
           const newGuess = {
